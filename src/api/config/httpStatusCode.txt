@@ -1,0 +1,46 @@
+200 OK
+201 Created
+202 Accepted
+204 No Content
+400 Bad Request
+401 Unauthorized
+403 Forbidden
+404 Not Found
+405 Method Not Allowd
+409 Conflict
+429 Too many Requests
+5XX Server errors
+
+// response status
+// result: { // localhost
+//   fail : 0,
+//   success: 1,
+//   notFound : 2,
+//   notEnoughParam : 3,
+//   noAffected: 4,
+//   err: 5,
+//   notEnoughPoint : 6
+// },
+// emailReslut status
+// 0: 'notAuth', // 아무것도 안됬을때,
+// 1: 'success', // 성공
+// 2: 'aleadyExist', // 중복
+// 3: 'sendFail', // 이메일 보내는거 실패
+// 4: 'notMatched', // 인증 코드가 틀렸을때
+// 5: 'expired', // 인증시간 오류
+// 6: 'isSendNotVerify', // 인증코드는 보냈는데 인증버튼을 안누름
+
+ status : {
+  success : 200,
+  created : 201,
+  accepted : 202,
+  noContent : 204,
+  badRequest : 400,
+  unAuthorized : 401,
+  forbidden : 403,
+  notFound : 404,
+  methodNotAllowed : 405,
+  conflict : 409,
+  tooManyRequest : 429,
+  serverError : 500
+},

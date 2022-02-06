@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 400;
+  src: url(./Mulish-Regular.woff) format('woff');
+  /* src: url(./Mulish-Regular.ttf) format('truetype'); */
+}
+
+@font-face {
+  font-family: 'Mulish';
+  font-style: normal;
+  font-weight: 700;
+  src: url(./Mulish-Bold.woff) format('woff');
+  /* src: url(./Mulish-Bold.ttf) format('truetype'); */
+}

@@ -1,0 +1,174 @@
+// aws amplify 자동 배포, react-snap 적용
+"puppeteerArgs": [
+  "--no-sandbox",
+  "--disable-setuid-sandbox"
+],
+"puppeteerExecutablePath": "/opt/google/chrome/google-chrome",
+
+알람 리스트
+
+프로젝트
+새로운 프로젝트가 도착했습니다. 
+프로젝트가 업데이트 되었습니다. - 파일 업로드, 메시지 전송 등 프로젝트에 변동 사항이 있는 경우
+파트너가 프로젝트를 수락했습니다. 
+파트너가 프로젝트를 거절했습니다. 
+
+파트너
+파트너 요청이 도착했습니다. 
+'파트너 네임'이 파트너 요청을 수락했습니다. 
+'파트너 네임'이 파트너 요청을 거절했습니다. 
+
+계정
+데이터 용량이 50% 남았습니다. 
+데이터 용량이 30% 남았습니다. 
+데이터 용량이 10% 남았습니다. 
+'제품' 워런티 기간이 한달 남았습니다. 
+'제품' 워런티 기간이 끝났습니다. 
+
+
+골드 사용 내역 로그 내용
+변경 일자, 프로젝트 이름(파트너 페이지에서 수정하는 경우에는 공란), 수정한 직원
+골드 타입 / 총량 / 사용량 / 소모량 / 잔량 / 반납
+
+ex
+2021-10-19, Single cr X3, Edwin
+PT type / 20.00g / 6.10g / 0.90g / 13.00g / 0.00g
+
+- translation mapping
+notificationType: {
+  newProjectArrival: 'NEW_PROJECT_ARRIVAL',
+  projectUpdate: 'PROJECT_UPDATE',
+  projectAccept: 'PROJECT_ACCEPT',
+  projectReject: 'PROJECT_REJECT',
+  newPartnerReq: 'NEW_PARTNER_REQ',
+  partnerAccept: 'PARTNER_ACCEPT', - 
+  partnerReject: 'PARTNER_REJECT', - 
+  dataRemainFiftyPer: 'DATA_REMAIN_FIFTY_PER',
+  dataRemainThirtyPer: 'DATA_REMAIN_THIRTY_PER',
+  dataRemainTenPer: 'DATA_REMAIN_TEN_PER',
+  warrantyRemainOneMon: 'WARRANTY_REMAIN_ONE_MON', - 
+  warrantyEnd: 'WARRANTY_END' -
+}
+
+
+// api error localize
+{
+  user : { 
+      sigupReqNotValid : 'USER_SIGNUP_REQUEST_NOT_VALID', // 회원가입정보가 유효하지 않을때.
+      emailIsEmpty : "USER_SIGNUP_EMAIL_NOT_VALID", // email 이 우효하지 않을때.
+      passwordIsEmpty : "USER_SIGNUP_PASSWORD_NOT_VALID",// 로그인 할때 비밀번호 유효하지 않을때.
+      userTypeNotValid : "USER_TYPE_NOT_VALID" ///
+  },
+  project : {
+      projectListReqNotValid : 'PROJECT_LIST_REQUEST_NOT_VALID',// 프로젝트 리스트 조건이 올바르지 않을때.
+      notFoundProject : "NOT_FOUND_PROJECT",// 해당 프로젝트코드의 프로젝트를 찾지 못했을 때.
+      alreadyComplete : "ALREADY_COMPLETE",// 이미 완료된 프로젝트를 다시 완료 하려 할때.
+      alreadyEvaluate : "ALREADY_EVALUATE",// 평가했는데 또 평가하려고 할때.,
+      cannotDeleteProject : "CANNOT_DELETE_PROJECT", // 프로젝트를 삭제 할 수 없습니다.
+      notProjectAdminUser : "NOT_PROJECT_ADMINUSER", // 관리자 유저가 아닐때.
+      notReviewStage : "NOT_REVIEW_STAGE" , // review 할수있는 stage가 아닐때.
+      notConfirmStage : "NOT_CONFIRM_STAGE", // confirm 할수있는 stage가 아님.
+      NOT_HAVE_PROJECT_UPDATE_PERMISSION,
+  },
+  designer : {
+      designerListReqNotValid : 'DESIGNE_LIST_REQUEST_NOT_VALID', // 디자이너 리스트 검색 조건이 올바르지 않을때.
+      cannotLikeSelf : 'CANNOT_LIKE_SELF', // 자기 스스로에 좋아요 표시를 하려고 할때.
+      tooManyLikeCount : "TOO_MANY_LIKE_COUNT", // 좋아요가 10개 넘으면
+      applyFail : "APPLY_FAIL", // 프로젝트 apply 실패
+      alreadyInviteDesigner : "ALREADY_INVITE_DESIGNER", //이미 초대한 디자이너일때.
+      alreadyApply : 'ALREADY_APPLY_PROJECT', // 이미 해당프로젝트에 지원 했을때.
+      cannotApplyProjectStage : "CANNOT_APPLY_PROJECT_STAGE",// 프로젝트에 지원할수 있는 stage가 아닐때.
+      cannotAcceptProjectSelect : "CANNOT_ACCEPT_PROJECT_SELECT", // select 요청을 accept 할 수 없을때. ( 만료됐거나, 이미accept 했을때 )
+      cannotWorking : "CANNOT_WORKING", // workgin stage로 진행 할수 없을때 ( 해당프로젝트 참여자가 아니거나, 디자이너가 아닐때. )
+      projectInviteExpired : "PROJECT_INVITE_EXPIRED", // 프로젝트 초대가 만료 됐을때.
+      cannotSelectDesigner : "CANNOT_SELECT_DESIGNER",// 프로젝트 초대에 디자이너를 select 할 수 없을때.
+      alreadySelectedDesigner : "ALREADY_SELECTED_DESIGNER", // 이미 select 한 디자이너를 또 select 하려 할 때.
+      notAppliedDesigner : 'NOT_APPLIED_DESIGNER',  // 지원한 디자이너가 아닌데 클라이언트가 select 하려고 할때.
+      projectAcceptFail : 'PROJECT_ACCEPT_FAIL',   // 프로젝트 accept 실패
+      cannotChangeStage : "CANNOT_CHANGE_STAGE",  // stage를 변경할수 없는 상태.
+      newFileIsNotExist : "NEW_FILE_IS_NOT_EXIST", // done 호출시  프로젝트에 새로운 파일이 안올라왔을때.
+      cannotRejectDesigner : "CANNOT_REJECT_DESIGNER", // project 생성한 클라이언트 이외의 유저가 reject 요청 했을때.
+      notProjectOwner : "NOT_PROJECT_OWNER", // project owner 만 할 수있는 이벤트를 실행 하려고 할때.
+      notExistNewUploadFile : "NOT_EXIST_NEW_UPLOAD_FILE", // 새로 업로드된 파일이 없을때.
+      cannotUpdateDesignerStatus : "CANNOT_UPDATE_DEISNGER_STATUS", // 디자이너 
+      cannotCompleteProject : "CANNOT_COMPLETE_PROJECT", // 프로젝트 컴프리트 할수 있는 상태가 아닐때.,
+      cannotGiveupProject : "CANNOT_GIVEUP_PROJECT", // 프로젝트를 포기 할 수 있는 상태가 아닐때.
+      pointLack :  "POINT_LACK", // 포인트 부족 할 때.
+      cannotSelectProjectStage : "CANNOT_SELECT_PROJECT_STAGE", // designer select 할 수 있는 스테이지가 아닐때.
+      projectSelectExpired : "PROJECT_SELECT_EXPIRED", // project select 가 만료 됐을때.,
+      alreadyWorking : "ALREADY_WORKING", // 이미 working stage 에 있을때.
+      cannotRejectStage : "CANNOT_REJECT_STATUS", // reject 할 수 있는 status 가 아닐때.
+      reworkChanceIsNone : "REWORK_CHANCE_IS_NONE", // rework 할수 있는 기회가 없을때.
+      cannotChangeDesignerStatus : "CANNOT_CHANGE_DESIGNER_STATUS", // designer를 change할 수 있는 status 가 아닐때.
+      cannotApplyCancelStatus : "CANNOT_APPLY_CANCEL_STATUS", // appyl cancel 할 상태가 아닐때.
+      notProjectApplied : "NOT_PROJECT_APPLIED",  // project apply한 상태가 아닌데 cancel 하려고 할때.
+      cannotRemake : "CANNOT_REMAKE", // 리메이크 할 수 없을 때(stage가 리메이크 할 수 있는 단계가 아닐 때)
+      cannotDone : "CANNOT_DONE",
+  },
+  common : {
+      parameterEmpty : 'PARAMETER_EMPTY' // 파라미터가 비어있을때.
+  },
+  point :{
+      notEnoughPoint : 'NOT_ENOUGH_POINT', // 포인트가 부족 할 때.
+      pointReleaseFail : "POINT_RELEASE_FAIL", // 포인트 락걸린것 해제 실패.,
+      projectPointSetFail : "PROJECT_POINT_SET_FAIL" // 프로젝트에 포인트 할당 실패.
+  },
+  socketEvent : {
+      projectInvite : "PROJECT_INVITE", // 프로젝트에 초대 될때.
+      projectApply : "PROJECT_APPLY"
+      
+  },
+  my : {
+      myProfileParameterNotValid : "MY_PROFILE_PARAMETER_NOT_VALID"
+  },
+  event : {
+      eventListRequestNotValid : "EVENT_LIST_REQUEST_NOT_VALID"
+  },
+}
+
+// PrivateSocket
+eventType : {
+  projectCreate: "PROJECT_CREATE",
+  projectUpdate: "PROECT_UPDATE",
+  projectReview: "PROECT_REVIEW", 
+  projectReviewComplete: "PROJECT_REVIEW_COMPLETE",
+  projectWorking: "DESIGNER_WORKING", 
+  designerWorkDone: "DESIGNER_WORK_DONE",
+  clientConfirm: "CLIENT_CONFIRM", 
+  clientRemakeReq: "CLIENT_REMAKE_REQ",
+  //
+  fileUpload: "FILE_UPLOAD",
+  fileDownload: "FILE_DOWNLOAD",
+  fileDelete: "FILE_DELETE",
+},
+eventTitle : {
+  PROJECT_CREATE: "프로젝트 생성",
+  PROJECT_UPDATE: "프로젝트 업데이트",
+  PROJECT_REVIEW: "프로젝트 리뷰 시작",
+  PROJECT_REVIEW_COMPLETE: "프로젝트 리뷰 완료",
+  DESIGNER_WORKING: "디자이너 작업 시작",
+  DESIGNER_WORK_DONE: "디자이너 작업 완료",
+  CLIENT_CONFIRM: "클라이언트 컨펌앤페이",
+  CLIENT_REMAKE_REQ: "클라이언트 리메이크 요청",
+}
+
+// 기존
+POPUP_MSG_DESIGNER_APPLIED,Designer applied,Designer applied
+POPUP_MSG_DESIGNER_CANCEL_APPLICATION,The designer has canceled the application.,The designer has canceled the application.
+POPUP_MSG_DESIGNER_REFUSED,The designer refused.,The designer refused.
+POPUP_MSG_DESIGNER_STARTED,Your designer has started the project.,선정된 디자이너가 프로젝트를 시작하였습니다.
+POPUP_MSG_PROJECT_COMPLETED,The project has been completed.,프로젝트를 완료하였습니다.
+POPUP_MSG_PROJECT_INVITATION,You have an invitation to participate in a project.,프로젝트 참여 요청이 들어왔습니다.
+POPUP_MSG_RECEIVED_PAYMENT,"You have received the payment. ",포인트가 지급되었습니다.
+POPUP_MSG_REDESIGN_REQUEST,You have a request for redesign.,디자인 재요청이 왔습니다.
+POPUP_MSG_SELECTED_PROJECT,You have been selected for the project.,프로젝트에 선정되셨습니다.
+
+// 변경중
+NOTIFICATION_EVENT_TITLE_PROJECT_CREATE,The project has been created.,프로젝트가 생성되었습니다.
+NOTIFICATION_EVENT_TITLE_PROECT_UPDATE,The project has been updated.,프로젝트가 업데이트되었습니다.
+NOTIFICATION_EVENT_TITLE_PROECT_REVIEW,The project work has begun.,프로젝트 리뷰가 시작되었습니다.
+NOTIFICATION_EVENT_TITLE_PROJECT_REVIEW_COMPLETE,The project review is complete.,프로젝트 리뷰가 완료되었습니다.
+NOTIFICATION_EVENT_TITLE_DESIGNER_WORKING,The project work has begun.,프로젝트 작업이 시작되었습니다.
+NOTIFICATION_EVENT_TITLE_DESIGNER_WORK_DONE,The project work is complete.,프로젝트 작업이 완료되었습니다.
+NOTIFICATION_EVENT_TITLE_CLIENT_CONFIRM,The project has been completed from client,클라이언트가 프로젝트를 완료하였습니다.
+NOTIFICATION_EVENT_TITLE_CLIENT_REMAKE_REQ,You have a request for redesign.,디자인 재요청이 왔습니다.

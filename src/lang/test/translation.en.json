@@ -1,0 +1,9 @@
+{
+  "Test": "{{username}} and {{date}}",
+  "TEST_TEST": "{{username}} and {{date}}",
+  "Test2": "Welcome\n hihi",
+  "EN": "En Content",
+  "Journals": "Journal on Educational Resources in Computing ",
+  "Transactions": "IEEE/ACM Transactions on Networking ",
+  "Magazines": "StandardView"
+}

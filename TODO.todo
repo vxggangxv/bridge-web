@@ -1,0 +1,208 @@
+DOF Bridge:@est-total(2020-11-16 ~ 2021-03-12)
+  
+  Todos: @est(2020-11-16 ~ 2021-02-26)
+    ☐ 브릿지 리뉴얼 v2 작업기간 @est-total(11/15 ~ 21/3)
+    ✔ 해더고정 제거, 우측하단 위로가기버튼 추가 @done(21-11-19 16:42)
+    ✔ indication UI 변경 @done(21-11-19 16:42)
+    ✔ CreateProject @done(21-11-19 16:42)
+    ✔ ProjectProcessStep - rework time 표시 추가 @done(21-12-06 10:48)
+    ✔ Modal outside click action 추가 @done(21-12-06 10:48)
+    ☐ indication version 호환 표시 확인 
+    ☐ Project confirm modal - 보유 points 타이밍, point모자를 경우 팝업 등장 후 store 이동
+    ☐ 채팅 구글 Translation api 연동 - 라이브 배포 후 테스트
+    ☐ ProjectList - stage별 요청 추가(multi select)
+    ✔ userType = 'admin' 프로젝트 들어왔을 경우 show review btn @done(21-12-06 10:47)
+    ✔ socket event type - 변경 사항 적용 @done(21-12-06 10:47)
+    ✔ chatting userType 전달 @done(21-12-06 10:47)
+    ✔ 백엔드 확인 사항 @done(21-12-08 15:11)
+    ✔ admin입장 review변경 시 실시간 stage 적용 @done(21-12-08 15:11)
+    ✔ teeth 데이터 매칭 확인 @done(21-12-08 15:11)
+    ✔ confirm 요청 에러 @done(21-12-08 15:11)
+    ✔ modify한 이후 point 0으로 초기화 오류 @done(21-12-08 15:11)
+    ✔ createProject시 point 계산 에러(-로 적용됨) @done(21-12-08 15:11)
+    ☐ DatePicker 표시 추가(CreateProject 선택 +1, +2 색상 추가)
+    //
+    ☐ ChatContainer - ProjectJoin 시점 확인(stage변경시 다시 Join되는 현상 확인)
+    ☐ attendList - issue 확인
+    ☐ Designer select할 경우 보유 point가 부족할 경우 알림 추가(충전 스토어 이동)
+    ☐ Notification - totalPage error 백엔드 확인 요청
+    ☐ 브라우저 사용자 쿠키 허용 거부했을 경우, user none일 경우 발생시 core에서 userInfo 재받기 추가
+  Questions: 
+    ☐ BusinessDate require?
+  Design: 
+    ☐ changeDesigner - 디자인 요청
+  Backend: 
+    ☐ Invite한 사람이 지원했을 경우 상단 위치, 테두리 표시(Backend key값 요청) - isInvite null: 초기상태, 0: 지원한 유저, 1: 초대받은 유저
+  Conference20210520:
+    ☐ DesignerPortfolio license등록여부 표시, License여부 표시 승인 절차 등 차후 결정
+    ☐ 
+  Conference20210407:
+    ☐ Teeth bridge 활성화 비활성화 색상 변경
+    ☐ Clear All 버튼 위치 변경
+  Conference20210317:
+    ☐ OverviewContainer - My Activities log 추가
+  Conference20210324:
+    ☐ Create이후 나오는 Invite 페이지 회의에서 확정 후 적용
+    ☐ CreateProject - projectTitle input 창 추가
+    ☐ Invite 팝업 변경
+    ☐ ProjectUploadContainer - Client, Designer upload file 구분 표시(임시 표사)
+  Conference20210324: 
+    ☐ ModelViewer - rotation축(가운데 설정), 이동
+    ☐ CreateProject 
+      - teeth색 적용시점이 apply로 로직 변경(apply버튼 제거)
+      - projectTitle (변경 UI작업시 적용)
+      - Material default value: Zirconia
+    ☐ UserProjects - filter type(manager) 추가
+    ☐ DesignerList - 변경 UI작업시 view more load 적용
+    ☐ Designer - Online표시(DesignerList, InvitePopup, ProjectSelectList) 추가
+    ☐ TeethModel
+      - 마우스 오른 버턴이 로테이션, 
+      - 마우스 중앙(휠)버턴 또는 마우스 왼쪽, 오른쪽 버턴 동시 누르면 평행 이동
+      - select 한 디자이너들이 모두 액션을 안취하고 넘어가면 디자이너 선택화면으로 넘어간다
+    ☐ Project process 참고
+      // 이때, 클라이언트는 프로젝트를 삭제하거나, 지원한 디자이너중에 새로 select 를 할 수 있음 
+      // 디자이너가 reject한 경우에는 attend list 에서 삭제.
+      // reject, ( 삭제, 디자이너 재선택 ) -> matching ( stage :1 ) ( desinger 선택 안된경우) : stage === 1 && designerInfo === null; - projectStatus: REJECRT
+      // select 만료 ( 삭제, 디자이너 재선택) -> matching ( stage :1 )( desinger 선택 안된경우) 별도 키값 제공 - projectStatus
+      // giveup, ( 삭제, 프로젝트 수정 )
+      // change designer, ( 삭제, 프로젝트 수정 )  
+      // matching 이후 wait 추가
+      // get: project detail  -> projectStatus
+      // private socket - 팝업 연동
+  Feedback: 
+    ☐ 채팅창 파일 업로드 기능 추가
+    ☐ TeethModel Upgrade
+  Pending: 
+    ☐ 언어 I18N사용, 영어 버전 받은 후(엑셀로), csv파일 변환 후 i18n 에 적용되도록 프로세스 개발
+    ☐ Redux Persist - store update이후 갱신 에러 확인 필요, 현재 사용 중지 @low
+    ☐ ply - texture 매핑 이슈, ply texture는 not support, 현재 point color ply만 적용 @low
+    ☐ 채팅창 F5새로고침시 퇴장, 입장 구분 - 
+    ☐ Change Designer는 process정립  후 적용
+    ☐ 차후 서비스 관리 프로세스 - 이메일 접수 -> 기능적 이슈는 담당 개발자에게 토스, 상대방 차단기능 추가 고려
+    ☐ 차후 socket projectUpdate 디테일하게 분기시 연동
+  Improving: 
+    ☐ teeth 클릭시 우측 teeth table 해당 이빨 위치로 스크롤 이동
+  Tagging:
+    ----------------------
+    ☐ 호환 브라우저(Chrome, Edge, Opera, Firefox) 테스트 필요
+    ☐ Invoice 폼 작성 페이지 개발
+    ☐ Sync 내 포인트 송금 기능 가능여부 확인 및 개발
+    ☐ UserProjectList - response data 값 추가요청(stage 기본 0, 기타 값들체크 후 요청)
+    
+Archive:
+  ✔ ProjectUploadContainer - fielList uploadStage: {0, 1}: loading, {2}: success, {3}: error, 차후  Sync 에서 Bridge 프로젝트 생성후 푸쉬할 경우 반영 @high @done(21-04-29 14:09) @project(DOF Bridge.Todos)
+  ✔ upload할 경우 해당 texture와의 매핑 문제 @done(21-04-29 14:09) @project(DOF Bridge.Todos)
+  ✔ Project - 디자이너가 Reject클릭 -> Create Stage, 해당 Client의 화면 (Rock, 검은 배경, 팝업또는 메시지) @done(21-03-26 16:40) @project(DOF Bridge.Todos)
+  ✔ ProjectContactContainer - cancel 제약(최소 1번) 이후 changeDesigner, cancelProject 활성화 stage: 0 으로 @done(21-03-26 16:40) @project(DOF Bridge.Todos)
+  ✔ ProjectContactContainer submitCard - designer/attent/list 연동 @done(21-02-24 16:19) @project(DOF Bridge.Todos)
+  ✔ NotificationContainer - list @done(21-03-26 16:40) @project(DOF Bridge.Todos)
+  ✔ working, reject, done, giveUp, confirm, rework 프로세스 백엔드 연동 및 rework, done 횟수에 따른 프로세스 적용 @done(21-03-03 19:06) @project(DOF Bridge.Todos)
+  ✔ 각 action(ProjectConCactContainer request api)별 페이지 갱신 또는 403(giveUp) 에 따른 프로세스 추가 적용 @done(21-03-08 11:39) @project(DOF Bridge.Todos)
+  ✔ complete이후 file download 가능 적용 @done(21-03-08 11:39) @project(DOF Bridge.Todos)
+  ✔ ProjectList - ProjectCard 데이터 연동 (settingTeethElevemtFn - type Number 변경) @done(21-03-11 12:45) @project(DOF Bridge.Todos)
+  ✔ Notifications Server Update 이후 socket 연결 @done(21-03-16 17:52) @project(DOF Bridge.Todos)
+  ✔ Store - pointStatus 및 pointHistory 데이터 연동 @done(21-03-18 18:05) @project(DOF Bridge.Todos)
+  ✔ Notifications - filter, search 기능 추가, @done(21-03-18 18:05) @project(DOF Bridge.Todos)
+  ✔ designer/accpet -> working시점 적용(working 삭제) - 테스트 필요 @done(21-03-22 11:23) @project(DOF Bridge.Todos)
+  ✔ ModelViewer - TeethLower, TeethUpper, 같은 그룹을 클릭했을 경우에 케이스 파일에 관해 model viewer 보이도록 개발 @done(21-03-24 10:15) @project(DOF Bridge.Todos)
+  ✔ SignUp, Profile - Company name -> name 로 변경 @done(21-03-24 10:17) @project(DOF Bridge.Todos)
+  ✔ ProjectList -  cloud icon 삭제 @done(21-03-24 10:17) @project(DOF Bridge.Todos)
+  ✔ CreateProject - language 제외 완료, SignUp, Profile language 추가 @done(21-03-24 10:17) @project(DOF Bridge.Todos)
+  ✔ Invite 시 view로 해당프로젝트 이동 Apply이후 채팅창 활성화, Select이후 Matching 변경, 대화후 Accept, Reject -> working, reject대체, 기존 accept 삭제 @done(21-03-22 11:35) @project(DOF Bridge.Todos)
+  ✔ Overview - star 표시 줄(하트, 별 임시) @done(21-03-24 14:46) @project(DOF Bridge.Todos)
+  ✔ Project - Project Activites log 추가 @done(21-03-24 16:19) @project(DOF Bridge.Todos)
+  ✔ CreateProject - material default value, indication변경에 따른 list 첫번째 material 적용, 차후 sync 도 적용 @done(21-04-08 18:41) @project(DOF Bridge.Todos)
+  ✔ LocalFileList 파일탐색기 concat fileList 기능 개선 @done(21-04-08 18:41) @project(DOF Bridge.Todos)
+  ☐ ProjectFileViewer - render시점 전체 로드 후 랜더링 @done(21-04-08 18:41) @project(DOF Bridge.Todos)
+  ✔ Login 패스워드 실패 시 404에러 확인 요청 @done(21-04-21 09:55) @project(DOF Bridge.Todos)
+  ✔ ProjectDetail - isOnline socket연동, backend 문의 -> 새로고침 시에만 리로딩 @done(21-04-12 15:17) @project(DOF Bridge.Todos)
+  ✔ CreatProject indicationSeq 첫번째 변수 클릭 시 해당 list 첫번째 값 default 설정 @done(21-04-12 15:18) @project(DOF Bridge.Todos)
+  ✔ ProjectUploadTable icon 변경 @done(21-10-25 10:18) @project(DOF Bridge.Todos)
+  ✔ Indication - teeth 클릭, scroll Top 설정 @done(21-04-15 09:51) @project(DOF Bridge.Todos)
+  ✔ Create Project - programType maxLength 2적용 @done(21-04-20 19:01) @project(DOF Bridge.Todos)
+  ✔ Mypage - submenu, router 개발 @done(21-04-21 09:53) @project(DOF Bridge.Todos)
+  ✔ Project process - client select 표시 UI, designer done 표시 UI 개발 @done(21-04-21 09:54) @project(DOF Bridge.Todos)
+  ✔ Select Designer - attendDesignerList order ['isInvite', 'likeStatus'] 정렬 @done(21-04-21 14:37) @project(DOF Bridge.Todos)
+  ✔ Project process client notification 전체 확인 및 changeDesigner 처리 확인 @high @started(21-04-26 14:47) @done(21-10-25 10:17) @lasted(25w6d19h30m58s) @project(DOF Bridge.Todos)
+  ✔ client select 이후deisgner appect(working) 시점 notification 확인 요청 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ client rework 작동 에러 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ designer giveUp 이후 projectStatus 백엔드 확인 요청 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ attendDesigners select이후 백엔드에서 변경 후(select designer제거 후) 전달 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ change이후 designer의 상태는?(현재 apply한 waiting상태로 - 회의 결과 아웃됨) @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ confirm Project는 mypage작업 후 진행 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ mypage - my/project totalPage 오류 백엔드 확인 요청 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ selectDesigner - attendStatus 가 1, 3이 아닌 attend Designers 표시 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ waitingDesigner - select designers api 적용 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ store - init_data actions 개선 @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ ProjectList - viewMore 방식으로 변경, Program filter 변경? @done(21-10-25 10:17) @project(DOF Bridge.Todos)
+  ✔ Mypage - page url, submenu active 매핑필요 @done(21-04-29 10:08) @project(DOF Bridge.Todos)
+  ✔ uploadFile stage 변경시 reset 추가 @done(21-04-29 10:08) @project(DOF Bridge.Todos)
+  ✔ chatting - 개행 테스트 @done(21-10-25 10:18) @project(DOF Bridge.Todos)
+  ✔ Overview - currentPoint, 500 error check @done(21-04-29 10:05) @project(DOF Bridge.Todos)
+  ✔ ProjectDetail - waitingDesigner 작업중 - clearInterval 테스트 필요 @high @done(21-10-25 10:18) @project(DOF Bridge.Todos)
+  ✔ Project detail - client select이후 waiting시 남은 시간 표시 @done(21-05-03 14:17) @project(DOF Bridge.Todos)
+  ✔ ProjectThumbnail - backend 빠진 내용 요청 @done(21-10-25 10:18) @project(DOF Bridge.Todos)
+  ✔ UserProjectList - expired 표시 @done(21-10-25 10:18) @project(DOF Bridge.Todos)
+  ✔ Project 관련 - 알림 커스텀 컴포넌트 개발, Private socket 알람 연동 @done(21-04-29 10:06) @project(DOF Bridge.Todos)
+  ✔ CreateProject - do not share 문구 변경 : Do not share personal information or patient information. @done(21-05-03 14:17) @project(DOF Bridge.Todos)
+  ✔ Gap width of cement : -0.1 ~ 0.5 mm @done(21-05-03 14:17) @project(DOF Bridge.Todos)
+  ✔ Minimal thickness : 0.4 ~ 1.0 mm @done(21-05-03 14:17) @project(DOF Bridge.Todos)
+  ✔ range slider로 변경 @done(21-05-03 14:17) @project(DOF Bridge.Todos)
+  ✔ Overview - designer - editProfile 적용, cursor 추가 @done(21-05-03 14:17) @project(DOF Bridge.Todos)
+  ✔ SignUp - UserType picto 적용, type.lab -> type.designer 변경 @done(21-05-03 14:16) @project(DOF Bridge.Todos)
+  ✔ DeisgnerList - 썸네일 pager 너비 변경 @done(21-10-25 10:18) @project(DOF Bridge.Todos)
+  ✔ FinishModal - favorite, rate 작동 처리 @done(21-10-25 10:18) @project(DOF Bridge.Todos)
+  ✔ ProjectDetail - confirmPopup완료, process전체 점검 @done(21-10-25 10:19) @project(DOF Bridge.Todos)
+  ✔ UserPortfolio - addFile click don't work @done(21-10-25 10:19) @project(DOF Bridge.Todos)
+  ✔ chat - reset 개념 추가(눌려있던 버튼 제거) @done(21-10-25 10:19) @project(DOF Bridge.Todos)
+  ✔ SelectDesigner이후 designer가 reject이후에도 applyInfo가 남아있음 @done(21-10-25 10:19) @project(DOF Bridge.Todos)
+  ✔ Project process issue @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ Select이후 시간이 지난 디자이너에게 (Expired 된) notification 알림 안감 - 프론트 재확인 필요 => projectUpdate오는데 project receiverCode가 변경되지 않아 생기는 문제 @high @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ Client가 Project Select 하게되면 Client가 'DESIGNER_ENTER' 두번 호출 문제 @done(21-05-06 16:17) @project(DOF Bridge.Todos)
+  ✔ 채팅창에 참여한 인원 데이터 위치 변경 - 기존 attendDeisgnerList , select이후 select한 디자이너를 제외한 리스트로 변환되기때문에, select 이후 socket의 projectEvent의 update project가 발생하면 fetch_project만 하고 project안에 receiverCode? 혹은 attendDesigner 로 확인 가능하도록 => stage === 0 가 아닐 경우에는 receiverCode로 체크 @done(21-05-06 20:30) @project(DOF Bridge.Todos)
+  ✔ chat totalCount받아서 적용 - 채팅방 나가고 들어왔을 떄 실시간 문제 요청, totalPeopleCount 값 변경 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ project renew한 이후 projectStatus 초기화 - 백엔드 기본 null 값 요청 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ project renew한 이후 이전에 applyInfo 그대로 유지 초기화 요청 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ waitingDesigner 진행중 해당 desinger에게 상태 업데이트 (백엔드 진행중), 20210507-receiver company-Test -0022 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ waitingDesigner 진행(expired)시 client에게 상태 업데이트 (백엔드 진행중) - projectStatus값 추가 요청 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ waitingDesigner 진행중 해당 desinger의 my/project list에 값도 expired 표시, 첫번 째 select designer를 제외 다른 designer 에게 matching list에서 프로젝트 보이지 않음 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ attendList가 남아서 reselect 상황시 400, CANNOT_SELECT_PROJECT_STAGE 에러, 20210507-b51a8a5c-8688-442c-8016-b43ceb5ae040 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ Project - file download 활성화: client여부와 stage 구분 다운로드 가능 변경, 3d object type 체크 후 다운로드 가능 여부 추가(viewType일 경우 + 클라이언트가 아닐경우 + complete가 아닐경우 다운로드 불가) @done(21-11-15 11:02) @project(DOF Bridge.Todos)
+  ✔ Mypage - submenu current 속성 조건 추가(hasChildren) @done(21-05-20 10:46) @project(DOF Bridge.Todos)
+  ✔ ProjectUplaodContainer 에서 html 업로드 할 경우 iframe을 사용해서 viewer로 보여주기 @done(21-05-20 10:46) @project(DOF Bridge.Todos)
+  ✔ CreateProject - teeth table의 teeth 정렬, bridge의 경우 (Bridge) 표시, background-color: ${color.blue}, color: #fff 추가 @done(21-05-20 12:58) @project(DOF Bridge.Todos)
+  ✔ Mypage - Made, Applied length여부에 따라 show 변경 @done(21-05-20 12:58) @project(DOF Bridge.Todos)
+  ✔ PushTerm option 문의 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ 영업팀 가격 가이드 정해진 이후 applyInfo totalPoint placeholder 최소금액 추가 @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ ProjectUpload 문구 받은 후 추가(ex. .info, .ply 등등) @done(21-11-15 11:01) @project(DOF Bridge.Todos)
+  ✔ ProjectUploadContainer - 구분되는 random color 적용 / Fit to zone(reset) 버튼 클릭시 크기 맞춤 적용 @done(21-09-16 11:29) @project(DOF Bridge.Todos)
+  ✔ Teeth paste 시 우측 teeth form 적용 error fix @done(21-10-22 13:07) @project(DOF Bridge.Todos)
+  ✔ headerTheme - ThemeProvider로 사용 적용(styled-components) @done(21-11-15 11:02) @project(DOF Bridge.Todos)
+  ✔ attendDesignerList - 최대 지원자 max설정 혹은, paging 처리 => 총 11명 apply 8명 invite 3명 @done(21-05-04 11:59) @project(DOF Bridge.consultation)
+  ✔ my/profile - manager 없을 경우 에러 처리 @done(21-03-29 11:56) @project(DOF Bridge.Backend)
+  ✔ Complete 된 상태 project가 designer projects 페이지에 나오지 않는 현상 백엔드 확인 - desinger로서 complete된 프로젝트 노출 @done(21-03-29 12:09) @project(DOF Bridge.Backend)
+  ✔ toggleLikeDesigner - 작동 에러 확인 @done(21-03-29 12:37) @project(DOF Bridge.Backend)
+  ✔ 중복 초대 안되도록(Backend, msg표시) - like/list , params projectCode 추가 @done(21-03-30 12:44) @project(DOF Bridge.Backend)
+  ✔ language 지정 최대 5개 설정 @done(21-03-26 11:31) @project(DOF Bridge.Conference20210325)
+  ✔ Company Name -> Nick Name 변경 @done(21-03-26 11:31) @project(DOF Bridge.Conference20210325)
+  ✔ date disabled 제거거@done(21-03-26 11:31) @project(DOF Bridge.Conference20210325)
+  ✔ ProjectUploadTable - 파일 보기 클릭시 제한없이 보이기, 그룹핑 해제 @done(21-03-26 15:34) @project(DOF Bridge.Conference20210325)
+  ✔ ProjectCard - delete project 가능하도록 @done(21-03-26 16:39) @project(DOF Bridge.Conference20210325)
+  ✔ Language api response 변경 - languageList 변경 @done(21-03-15 16:36) @project(DOF Bridge.Feedback)
+  ✔ ProjectDetail - Apply - Cancel @done(21-03-15 12:48) @project(DOF Bridge.Feedback)
+  ✔ ChatList(이전대화목록 로딩 확인) @done(21-03-15 12:48) @project(DOF Bridge.Feedback)
+  ✔ ProjectContactContainer - apply validWorkTime 추가 @done(21-03-15 16:02) @project(DOF Bridge.Feedback)
+  ✔ Delivery time 지났을 경우 changeDesigner 버튼 활성화 @done(21-03-15 16:34) @project(DOF Bridge.Feedback)
+  ✔ ProjectUploadContainer - 삭제버튼 활성화 및 Upload 후 Initial @done(21-03-15 16:35) @project(DOF Bridge.Feedback)
+  ✔ Resent Login 기능 추가 @started(21-01-11 14:50) @done(21-01-11 17:50)  @project(DOF Bridge.Done)
+  ✔ Designer - List @done(21-01-11 17:46)  @project(DOF Bridge.Done)
+  ✔ Designer - Profile @done(21-01-11 17:52)  @project(DOF Bridge.Done)
+  ✔ UserProfile, SignUp - designer type check 시 Desiger Service제공 유무 체크 기능 추가 @done(21-01-11 19:08) @project(DOF Bridge.Done)
+  ✔ User - Overview: chart api data 연동, TODO: resentProject 데이터 체크, change designer 추가 @started(21-01-11 17:47) @done(21-01-15 15:10) @lasted(3d21h23m58s) @project(DOF Bridge.Done)
+  ✔ User - Project: fetchUserProject 변경 및 데이터 연동 1차 완료 TODO: projectCard 데이터 체크 @started(21-01-14 18:00) @done(21-01-15 15:10) @lasted(21h10m59s) @project(DOF Bridge.Done)
+  ✔ User - Profile: fetchUserProfile 변경 및 데이터 연동 1차 완료 TODO: s3서버 세팅 완료시 회원정보 수정 테스트 예정 @done(21-01-15 15:09) @project(DOF Bridge.Done)
+  ✔ Project - redux store 연동 @done(21-01-18 19:26) @project(DOF Bridge.Done)
+  ✔ ProjectList - Api 연동, 1차 완료료@done(21-01-18 19:26) @project(DOF Bridge.Done)
+  ✔ Project - Init 연동 완료@done(21-01-19 19:39) @project(DOF Bridge.Done)
+  ✔ Project - Create Project 구조 및 Layout작업 중, StageTimeLine 개발, @done(21-01-27 10:25) @project(DOF Bridge.Done)
+  ✔ ProjectInformation, ProjectIndication 개발 및 성능 최적화 @done(21-01-28 11:59) @project(DOF Bridge.Done)
