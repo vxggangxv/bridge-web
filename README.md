@@ -6,9 +6,9 @@
 - grobal state : redux, redux-saga
 - redux-toolkit 커스텀 라이브러리 개발(https://www.npmjs.com/package/redux-toolkit-saga-combinator)
 - threejs 활용 3d모델 뷰어 개발(https://github.com/vxggangxv/bridge-web/blob/master/src/components/project/ProjectModelViewer.js)
-<img src="https://raw.githubusercontent.com/vxggangxv/portfolio-react/master/public/img/portfolio/bridge-web/model_viewer.jpg" />
+- <img src="https://raw.githubusercontent.com/vxggangxv/portfolio-react/master/public/img/portfolio/bridge-web/model_viewer.jpg" />
 - svg를 활용 치아 모델 커스텀 기능 개발(https://github.com/vxggangxv/bridge-web/tree/master/src/components/model - v2)
-<img src="https://raw.githubusercontent.com/vxggangxv/portfolio-react/master/public/img/portfolio/bridge-web/bridge_teeth.png" />
+- <img src="https://raw.githubusercontent.com/vxggangxv/portfolio-react/master/public/img/portfolio/bridge-web/bridge_teeth.png" />
 - Chart개발(https://github.com/vxggangxv/bridge-web/tree/master/src/components/common/chart)
 - Socket 활용 실시간 채팅 및 알림 구현
 - InfiniteScroll component
